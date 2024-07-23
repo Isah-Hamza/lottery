@@ -107,7 +107,7 @@ const index = () => {
                     </div>
                     <div className="text-sm -mt-5 sm:col-span-2 flex gap-2 items-start text-faint_black">
                         <input id='check' type='checkbox' className='accent-primary mt-2'/>
-                        <label htmlFor='check' className='pt-1' >Please tick this box to signify that you've read and accepted our terms and conditions and that the information provided above are accurate</label>
+                        <label htmlFor='check' className='pt-1' >Please tick this box to signify that you've read and accepted our terms and conditions and that the information provided above are accurate.</label>
                     </div>
                     <div className="mt-10 flex justify-center sm:col-span-2">
                         <button onClick={next} className='uppercase px-5 py-3 rounded text-sm bg-primary text-white font-semibold' >Continue To Pay</button>
