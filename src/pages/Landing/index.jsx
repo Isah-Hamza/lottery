@@ -48,6 +48,27 @@ const index = () => {
         handler.openIframe();
     }
 
+    const serviceOptions = [
+        { label:'SALE OF GOVERNMENT ASSETS', value:null},
+        { label:'PROMOTIONAL FEE', value:null},
+        { label:'VIOLATION FEE', value:null},
+        { label:'REGULARISATIN FEE', value:null},
+        { label:'APPROVAL IN PRINCIPLE FEE', value:null},
+        { label:'TENDER FEE', value:null},
+        { label:'ANNUAL SUBSCRIPTION FEE', value:null},
+        { label:'LICENCES FEE', value:null},
+        { label:'REFUND', value:null},
+    ]
+
+    const operatorOptions = [
+        { label:'BETKING', value:null},
+        { label:'1XBET', value:null},
+        { label:'BET NINJA', value:null},
+        { label:'BETFUSE', value:null},
+        { label:'FAST BET', value:null},
+        { label:'SURE ODDS', value:null},
+    ]
+
     const goBack = () => {
         if(step == 1) return;
         prev();
@@ -57,7 +78,7 @@ const index = () => {
     <>
         <div className='flex bg-[#f5f7f8]'>
         <div className="hidden lg:flex w-[500px] 2xl:w-[600px] h-screen bg-primary flex-col p-5 ">
-            <img className='w-12' src={logo} alt="logo" />
+            <img className='w-20' src={logo} alt="logo" />
             <div className="flex-1 bg-red-200n grid place-content-center">
                 <img className='w-full' src={design} alt="design" />
             </div>
@@ -69,16 +90,16 @@ const index = () => {
             </div>
         {step == 1 ?  <div className="mt-20 mx-auto w-full lg:w-[720px] bg-white shadow min-h-[200px] rounded-md p-6 pt-7  pb-8">
                 <div className="text-center text-sm">
-                    <p className='text-lg font-semibold text-primary'>Lorem ipsum dolor sit amet.</p>
-                    <p className='text-faint_black' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque.</p>
+                    <p className='text-lg font-semibold text-primary'>Pay a Biller</p>
+                    <p className='text-faint_black' >NATIONAL LOTTERY REGULATORY COMMISSION (NLRC) - 011105100100.</p>
                 </div>
                 <div className="mt-14 grid sm:grid-cols-2 gap-6">
-                    <div className=""><Select label={'Select Operator'} /></div>
-                    <div className=""><Select label={'Select Service'} /></div>
-                    <div className=""><Select label={'Billing Currency'} /></div>
-                    <div className=""><Input label={'Amount'} placeholder={'₦ 120,000'}/></div>
-                    <div className=""><Select label={'Country of Operation'} /></div>
-                    <div className=""><Select label={'State/County'} /></div>
+                    <div className="col-span-2"><Select options={operatorOptions} label={'Select Operator'} /></div>
+                    <div className="col-span-2"><Select options={serviceOptions} label={'Select Service'} /></div>
+                    {/* <div className=""><Select label={'Billing Currency'} /></div> */}
+                    <div className="col-span-2"><Input label={'Amount'} placeholder={'₦ 120,000'}/></div>
+                    {/* <div className=""><Select label={'Country of Operation'} /></div> */}
+                    {/* <div className=""><Select label={'State/County'} /></div> */}
                     <div className="sm:col-span-2">
                         <p className='text-sm mb-1' >Description</p>
                         <textarea className='placeholder:text-sm p-3 border outline-none w-full h-28 rounded' 
@@ -86,7 +107,7 @@ const index = () => {
                     </div>
                     <div className="text-sm -mt-5 sm:col-span-2 flex gap-2 items-start text-faint_black">
                         <input id='check' type='checkbox' className='accent-primary mt-2'/>
-                        <label htmlFor='check' className='pt-1' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Ratione adipisci odio magni, incidunt eligendi alias quas illum. Saepe, ea non.</label>
+                        <label htmlFor='check' className='pt-1' >Please tick this box to signify that you've read and accepted our terms and conditions and that the information provided above are accurate</label>
                     </div>
                     <div className="mt-10 flex justify-center sm:col-span-2">
                         <button onClick={next} className='uppercase px-5 py-3 rounded text-sm bg-primary text-white font-semibold' >Continue To Pay</button>
@@ -97,7 +118,7 @@ const index = () => {
             <div className="mt-20 mx-auto w-full sm:w-[550px] bg-white shadow min-h-[200px] rounded-md p-6 pt-7  pb-8">
                 <div className="text-center text-sm mb-5">
                     <p className='text-lg font-semibold text-opacity-90 mb-1 text-primary'>Please Verify Your Details.</p>
-                    <p className='text-faint_black' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Doloremque. Lorem ipsum dolor sit amet. </p>
+                    <p className='text-faint_black' >Please verify that the information below is accurate as the transaction is irreversible </p>
                 </div>
                 <div className="border rounded-md p-4">
                     <p className='underline'>BETFUSE INC. LIMITED</p>
@@ -120,7 +141,7 @@ const index = () => {
                         </div>
                         <div className="col-span-2">
                             <p className='text-faint_black' >Narration</p>
-                            <p className='text-sm font-medium text-black/90 line-clamp-2' >Lorem ipsum dolor sit amet consectetur adipisicing elit. Quos accusantium tempore eligendi possimus libero cupiditate praesentium eius sint tenetur ullam.</p>
+                            <p className='text-sm font-medium text-black/90 line-clamp-2' >The description of the transaction goes thus..</p>
                         </div>
                     </div>
                 </div>
@@ -142,7 +163,7 @@ const index = () => {
             <img className='w-20' src={successImg} alt="success" />
             </div>
             <p className='text-lg font-medium text-primary mt-4'>Payment completed</p>
-            <p >Lorem ipsum dolor sit amet consectetur adipisicing elit.</p>
+            <p >Congratulations. Your payment was successful. <br /> You can close this modal now.</p>
             <div className="mt-5 flex justify-center">
                 <button onClick={() => 
                     {
