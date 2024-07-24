@@ -11,25 +11,28 @@ import fire from "../../assets/images/fire.png";
 import jide from "../../assets/images/jide.png";
 import CustomLineChart from "../../components/Chart/LineChart";
 
-import { RxCaretDown } from "react-icons/rx";
+import { RxCaretDown, RxCaretLeft, RxCaretRight } from "react-icons/rx";
+import { FiEye } from "react-icons/fi";
+import Select from "../../components/Inputs/Select";
 
 const Dashboard = () => {
   const [communities, setCommunities] = useState([]);
 
-  const AttendedTo = () => (
-    <div className="bg-primary-green/10  text-primary-green text-xs p-1 rounded-xl">
-      Attended To
+  const Paid = () => (
+    <div className="w-[90px] text-center bg-primary-light-green/10  text-primary-light-green text-xs p-1.5 rounded-2xl">
+      Paid
     </div>
   );
-  const Pendidng = () => (
-    <div className="bg-primary-yellow/30  text-primary-yellow text-xs p-1 rounded-xl">
+  const Pending = () => (
+    <div className="w-[90px] text-center bg-primary-yellow/30  text-primary-yellow text-xs p-1.5 rounded-2xl">
       Pending
     </div>
   );
   const statuses = {
-    1: <Pendidng />,
-    2: <AttendedTo />,
+    'Pending': <Pending />,
+    'Paid': <Paid />,
   };
+
   const emergencies = [
     {
       name: "Jide Niniola",
@@ -113,98 +116,161 @@ const Dashboard = () => {
       img: jide,
     },
   ];
+  const invoices = [
+    {
+        title:'Invoice Title',
+        amount:'₦250,000',
+        date:'12/09/2023',
+    },
+    {
+        title:'Invoice Title',
+        amount:'₦250,000',
+        date:'12/09/2023',
+    },
+    {
+        title:'Invoice Title',
+        amount:'₦250,000',
+        date:'12/09/2023',
+    },
+    {
+        title:'Invoice Title',
+        amount:'₦250,000',
+        date:'12/09/2023',
+    },
+  ]
+
+  const Active = () => (
+    <div className='w-[100px] bg-primary-green/10  text-primary-light-green text-center text-xs p-1.5 py-1.5 rounded-2xl'>successful</div>
+)
+
+  const Inactive = () => (
+    <div className='w-[100px] bg-red-200 text-red-800 text-center text-xs p-1.5 py-1.5 rounded-2xl'>failed</div>
+)
+
+const statusess =  {
+    'Active' :  <Active />,
+    'Inactive' : <Inactive />
+}
+
+const [activeTab, setActiveTab] = useState(0);
+
+const table_header_a = [
+    'Invoice Number',
+    'Amount',
+    'Operator',
+    'Service',
+    'Date',
+    'Status',
+    ''
+]
+const table_data_a = [
+     
+    {
+        invoice_no: 'Invoice #1838942022',
+        amount: '₦320,057',
+        operator: 'Operator name',
+        service: 'Service name',
+        date: '15/5/2024 ',
+        status: 'Active',
+    },
+     
+    {
+        invoice_no: 'Invoice #1838942022',
+        amount: '₦320,057',
+        operator: 'Operator name',
+        service: 'Service name',
+        date: '15/5/2024 ',
+        status: 'Inactive',
+    },
+     
+    {
+        invoice_no: 'Invoice #1838942022',
+        amount: '₦320,057',
+        operator: 'Operator name',
+        service: 'Service name',
+        date: '15/5/2024 ',
+        status: 'Active',
+    },
+    {
+        invoice_no: 'Invoice #1838942022',
+        amount: '₦320,057',
+        operator: 'Operator name',
+        service: 'Service name',
+        date: '15/5/2024 ',
+        status: 'Active',
+    },
+    {
+        invoice_no: 'Invoice #1838942022',
+        amount: '₦320,057',
+        operator: 'Operator name',
+        service: 'Service name',
+        date: '15/5/2024 ',
+        status: 'Inactive',
+    },
+
+]  
+const table_header_b = [
+    'Invoice Title',
+    'Transaction Ref.',
+    'Amount',
+    'Date issued', 
+    'Due Date', 
+    'Status', 
+    ''
+]
+const table_data_b = [
+    {
+        ref:'148AGI6GH1',
+        amount:'₦2,300',
+        title:'Sample Title',
+        issue:'09 Feb 2032',
+        due:'09 Feb 2032',
+        status:'Paid'
+    },
+    {
+        ref:'148AGI6GH1',
+        amount:'₦2,300',
+        title:'Sample Title',
+        issue:'09 Feb 2032',
+        due:'09 Feb 2032',
+        status:'Pending'
+    },
+    {
+        ref:'148AGI6GH1',
+        amount:'₦2,300',
+        title:'Sample Title',
+        issue:'09 Feb 2032',
+        due:'09 Feb 2032',
+        status:'Pending'
+    },
+    {
+        ref:'148AGI6GH1',
+        amount:'₦2,300',
+        title:'Sample Title',
+        issue:'09 Feb 2032',
+        due:'09 Feb 2032',
+        status:'Paid'
+    },
+    {
+        ref:'148AGI6GH1',
+        amount:'₦2,300',
+        title:'Sample Title',
+        issue:'09 Feb 2032',
+        due:'09 Feb 2032',
+        status:'Paid'
+    },
+
+]
+
 
   return (
-    <div>
-      <div className="grid gap-5 md:grid-cols-[2.6fr,1.4fr] min-h-20">
-        <div className="bg-white rounded-xl p-4 sm:p-7">
-          <div className="flex items-center gap-10 justify-between mb-12">
-            <p className="text-lg font-medium text-faint-black">
-              Friends Colony Finance
-            </p>
-            <div className="relative">
-              <select className="min-w-20 bg-gray-300 rounded-3xl p-2 px-3 pr-4 appearance-none text-sm">
-                <option value="">year</option>
-                <option value="">2023</option>
-                <option value="">2024</option>
-                <option value="">2025</option>
-              </select>
-              <span className="absolute top-1/2 -translate-y-1/2 right-2">
-                <RxCaretDown />
-              </span>
-            </div>
-          </div>
-          <div className="chart-parent my-5 h-52 grid place-content-center -ml-7 mb-12">
-            <CustomLineChart />
-          </div>
-          <div className="grid grid-cols-2 sm:flex text-sm gap-y-10 sm:gap-y-0">
-            <div className="col-span-2">
-              <p className="font-medium">₦587,346</p>
-              <p>From the start of this month</p>
-            </div>
-            <div className="ml-auto items-start flex px-5 border-x mx-5">
-              <div className="mt-1.5 mr-2 bg-primary-green w-2 h-2 rounded-full"></div>
-              <div className="">
-                <p>Inflow</p>
-                <p className="font-medium">₦407,980</p>
-              </div>
-            </div>
-            <div className="flex items-start pr-5 mr-5 border-r">
-              <div className="mt-1.5 mr-2 bg-primary-yellow w-2 h-2 rounded-full"></div>
-              <div className="">
-                <p>Outflow</p>
-                <p className="font-medium">₦125,700</p>
-              </div>
-            </div>
-            <div className="col-span-2">
-              <div className="">
-                <p>Finance position</p>
-                <p className="flex items-center gap-1">
-                  <span className="text-primary-green font-medium">23%</span>
-                  gain{" "}
-                  <span>
-                    {" "}
-                    <img src={send} alt="send" />{" "}
-                  </span>
-                </p>
-              </div>
-            </div>
-          </div>
-        </div>
-        <div className="bg-white rounded-xl h-full w-full">
-          <div className="bg-primary-green h-52 text-white rounded-xl grid place-content-center text-center">
-            <p className="text-xl font-bold">₦587,346</p>
-            <p className="text-sm mt-3 text-white/85">Wallet balance</p>
-            <p className="mt-5  text-white/85">
-              Pending balance:{" "}
-              <span className="text-white font-medium">₦45,000</span>{" "}
-            </p>
-          </div>
-          <div className="px-5">
-            <div className="text-xs mt-7 grid grid-cols-2 gap-3">
-              <div className="p-2 rounded-xl border h-28 grid place-content-center text-center">
-                <img src={transfer} className="mb-2 m-auto" alt="transfer" />
-                <p>Transfer Money</p>
-              </div>
-              <div className="p-2 rounded-xl border h-28 grid place-content-center text-center">
-                <img src={approve} className="mb-2 m-auto" alt="approve" />
-                <p>Approve Payment</p>
-              </div>
-            </div>
-            <div className="my-5">
-              <button className="text-sm bg-[#1639300A] text-[#163930] font-medium w-full p-2.5 rounded-2xl ">
-                Go to payments
-              </button>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-sm mt-5">
+    <div>  
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-sm mb-5">
         <div className="bg-white p-4 rounded-lg">
           <div className="flex justify-between items-start">
             <div>
-              <p>Properties</p>
-              <p className="mt-2 text-xl font-semibold text-faint-black">44</p>
+              <p>Payment Count</p>
+              <p className="mt-2 text-xl font-semibold text-faint-black">₦4,500,000</p>
             </div>
             <img src={property} alt="property" />
           </div>
@@ -219,8 +285,8 @@ const Dashboard = () => {
         <div className="bg-white p-4 rounded-lg">
           <div className="flex justify-between items-start">
             <div>
-              <p>Residents</p>
-              <p className="mt-2 text-xl font-semibold text-faint-black">82</p>
+              <p>Amount Paid</p>
+              <p className="mt-2 text-xl font-semibold text-faint-black">₦2,550,000</p>
             </div>
             <img src={resident} alt="resident" />
           </div>
@@ -234,8 +300,8 @@ const Dashboard = () => {
         <div className="bg-white p-4 rounded-lg">
           <div className="flex justify-between items-start">
             <div>
-              <p>Staff</p>
-              <p className="mt-2 text-xl font-semibold text-faint-black">13</p>
+              <p>Amount Pending</p>
+              <p className="mt-2 text-xl font-semibold text-faint-black">₦1,900,700</p>
             </div>
             <img src={staff} alt="staff" />
           </div>
@@ -249,8 +315,8 @@ const Dashboard = () => {
         <div className="bg-white p-4 rounded-lg">
           <div className="flex justify-between items-start">
             <div>
-              <p>Assets</p>
-              <p className="mt-2 text-xl font-semibold text-faint-black">13</p>
+              <p>Total Invoice</p>
+              <p className="mt-2 text-xl font-semibold text-faint-black">73</p>
             </div>
             <img src={asset} alt="assets" />
           </div>
@@ -262,8 +328,81 @@ const Dashboard = () => {
           </div>
         </div>
       </div>
+      <div className="grid gap-5 md:grid-cols-[2.6fr,1.4fr] min-h-20">
+        <div className="bg-white rounded-xl p-4 sm:p-7">
+          <div className="flex items-center gap-10 justify-between mb-12">
+            <p className="text-base font-medium text-faint-black">
+              Payment against invoices
+            </p>
+            <div className="relative">
+              <select className="min-w-20 bg-gray-300 rounded-3xl p-2 px-3 pr-4 appearance-none text-sm">
+                <option value="">year</option>
+                <option value="">2023</option>
+                <option value="">2024</option>
+                <option value="">2025</option>
+              </select>
+              <span className="absolute top-1/2 -translate-y-1/2 right-2">
+                <RxCaretDown />
+              </span>
+            </div>
+          </div>
+          <div className="chart-parent my-5 h-52 grid place-content-center -ml-12 mb-12">
+            <CustomLineChart />
+          </div>
+          <div className="grid grid-cols-2 sm:flex text-sm gap-y-10 sm:gap-y-0">
+            
+            <div className=" items-start flex px-5 border-r mr-5">
+              <div className="mt-1.5 mr-2 bg-primary-green w-2 h-2 rounded-full"></div>
+              <div className="">
+                <p className="text-xs opacity-70">Amount Paid</p>
+                <p className="font-medium">₦407,980</p>
+              </div>
+            </div>
+            <div className="flex items-start pr-5 mr-5">
+              <div className="mt-1.5 mr-2 bg-primary-yellow w-2 h-2 rounded-full"></div>
+              <div className="">
+                <p className="text-xs opacity-70" >Invoice Issued</p>
+                <p className="font-medium">₦125,700</p>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div className="p-5 bg-white rounded-xl text-sm">
+          <div className="flex gap-5 justify-between items-start">
+            <div className="">
+              <p className="font-medium ">Pending Invoices</p>
+              <p className="text-[#828282]">
+                <span className="font-medium">5</span> pending invoices
+              </p>
+            </div>
+            <button className="text-xs">see all</button>
+          </div>
+          <div className="mt-10">
+                {invoices.map((item, idx) => (
+                <div
+                    key={idx}
+                    className="bg-[#fdfdfd] mt-3 text-sm flex justify-between items-center p-3 rounded-lg border"
+                >
+                    <div className="text-xs">
+                    <p className="mb-1 text-sm font-medium">{item.title}</p>
+                    <div className="flex items-center gap-2" >
+                        <p className="font-medium text-faint-black"> 
+                        {item.amount}
+                        </p><span> | </span>
+                        <p>{item.date}</p>
+                    </div>
+                    </div>
+                    <div>
+                    <button className="text-xs text-primary font-medium  bg-primary/20 px-2 py-2 rounded-xl" >Make Payment</button>
+                    </div>
+                </div>
+                ))}
+          </div>
+        </div>
+      </div>
+    
       {/* end */}
-      <div className="mt-5 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+      {/* <div className="mt-5 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
         <div className="p-5 bg-white rounded-xl text-sm">
           <div className="flex gap-5 justify-between items-start">
             <div className="">
@@ -377,7 +516,110 @@ const Dashboard = () => {
             </button>
           </div>
         </div>
-      </div>
+      </div> */}
+      {/* Table */}
+      <div className="bg-white rounded-xl p-5 mt-5">
+            <div className="text-sm flex  flex-col sm:flex-row sm:items-center gap-2 sm:gap-10 justify-between ">
+                <div className="w-full flex items-center gap-10 justify-between">
+                <p className="font-medium ">General reports</p>
+                    <div className="flex p-2 items-center rounded-3xl bg-[#f1f1f1]">
+                        {
+                            ['All Transactions','All Invoices'].map((item,idx) => (
+                            <button onClick={() => setActiveTab(idx)} 
+                                className={` px-5 py-2 rounded-2xl  ${activeTab == idx && 'text-white bg-primary-light-green'}`}>
+                                {item}
+                            </button>
+                            ))
+                        }
+                    </div>
+                </div>
+            </div>
+            <div className="max-w-[calc(100vw-67px)] sm:max-w-[unset] overflow-x-auto !text-sm w-full mt-7">
+            {activeTab == 0 ?  
+                <table className='w-full table-auto min-w-[800px] sm:min-w-[unset]'>
+                    <thead className='bg-[#f7f7f7]'>
+                        <tr>
+                            {
+                                table_header_a.map((item, idx) => (
+                                    <td className='py-2' key={idx}>{item}</td>
+                                ))
+                            }
+                        </tr>
+                    </thead>
+                    <tbody className='pt-5 mt-5 text-[13px]'>
+                        {
+                            table_data_a.map((item, idx) => (
+                                <tr className={`mt-5 pt-5 ${idx !== table_data_a.length - 1 && 'border-b'}`} key={idx}>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.invoice_no}</td>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.amount}</td>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.operator}</td>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.service}</td>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.date}</td>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{statusess[item.status]}</td>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>
+                                        <div className=' text-center pl-10'>
+                                            <FiEye size={18} />
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table> :
+                <table className='w-full table-auto min-w-[800px] sm:min-w-[unset]'>
+                    <thead className='bg-[#f7f7f7]'>
+                        <tr>
+                            {
+                                table_header_b.map((item, idx) => (
+                                    <td className='py-2' key={idx}>{item}</td>
+                                ))
+                            }
+                        </tr>
+                    </thead>
+                    <tbody className='pt-5 mt-5 text-[13px]'>
+                        {
+                            table_data_b.map((item, idx) => (
+                                <tr className={`mt-5 pt-5 ${idx !== table_data_b.length - 1 && 'border-b'}`} key={idx}>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.title}</td>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.ref}</td>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.amount}</td> 
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.issue}</td>
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.due}</td> 
+                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{statuses[item.status]}</td> 
+                                    {/* <td className={`py-5 ${idx == 0 && 'pt-7'}`}>
+                                        <div className=' text-center'>
+                                            <FiEye  size={18}/>
+                                        </div>
+                                    </td> */}
+                                </tr>
+                            ))
+                        }
+                    </tbody>
+                </table>}
+            </div>
+            <div className="mt-5 text-sm">
+                <div className="flex flex-col sm:flex-row items-center gap-10 justify-between">
+                    <div className="flex items-center gap-5">
+                        <div className="flex items-center gap-2">
+                            <p>Rows per page</p>
+                            <Select className={'!w-[50px] !px-2 !py-1 !rounded-md '} options={[{ label: '10', value: '10' }]} />
+                        </div>
+                        <p>10 of 320</p>
+                    </div>
+                    <div className="flex items-center gap-">
+                        <RxCaretLeft size={20} />
+                        <span>Prev</span>
+                        <div className="flex items-center gap-3 mx-5">
+                            <button>1</button>
+                            <button className='inline-block px-2 py-1 bg-primary-gray/30 rounded-md'>2</button>
+                            <button>3</button>
+                        </div>
+                        <span>Next</span>
+                        <RxCaretRight size={20} />
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
   );
 };

@@ -398,14 +398,14 @@ const DashboardLayout = () => {
               >
                 <img
                   className="w-9 h-9 rounded-full"
-                  src={user?.photo}
+                  src={admin}
                   alt="admin"
                 />
                 <div className="text-xs">
                   <p className="font-medium">
-                    {user?.firstName} {user?.lastName}
+                    Isah Hamza
                   </p>
-                  <p className="text-gray-500">{partner?.roleDefination}</p>
+                  <p className="text-gray-500">Super Admin</p>
                 </div>
                 <RxCaretDown />
               </button>
@@ -430,7 +430,7 @@ const DashboardLayout = () => {
             </div>
           ) : null}
           <main
-            className={`p-3 sm:p-5 lg:p-10 h-[calc(100vh-70px)] overflow-y-auto ${
+            className={`p-3 sm:p-5 lg:p-7 lg:px-5 h-[calc(100vh-70px)] overflow-y-auto ${
               activeLink == "settings" && "!h-[calc(100vh-140px)]"
             }`}
           >

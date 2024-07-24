@@ -9,8 +9,9 @@ export default {
       colors:{
         'primary': '#1A4022',
         'faint_black':'#696873',
-        
-        'primary-green': '#163930',
+
+        'primary-green': '#1A4022',
+        'primary-light-green' : '#5F891C',
         'primary-yellow': '#E5951A',
         'primary-gray': '#828282',
         'dashboard-bg': '#F8F8F8',
