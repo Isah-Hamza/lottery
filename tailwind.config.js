@@ -9,6 +9,12 @@ export default {
       colors:{
         'primary': '#1A4022',
         'faint_black':'#696873',
+        
+        'primary-green': '#163930',
+        'primary-yellow': '#E5951A',
+        'primary-gray': '#828282',
+        'dashboard-bg': '#F8F8F8',
+        'faint-black': '#333333',
       }
     },
   },
