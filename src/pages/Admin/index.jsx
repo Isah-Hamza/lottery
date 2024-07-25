@@ -568,7 +568,7 @@ const table_data_b = [
                                     <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.date}</td>
                                     <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{statusess[item.status]}</td>
                                     <td className={`py-5 ${idx == 0 && 'pt-7'}`}>
-                                        <button className='bg-primary-light-green/5 text-primary-light-green font-medium p-2 rounded-3xl text-xs text-center flex items-center gap-1'>
+                                        <button className='bg-primary-light-green/5 text-primary-light-green font-semibold p-2 rounded-3xl text-xs text-center flex items-center gap-1'>
                                             <BiFolder size={15} />
                                             <span>Download File</span>
                                         </button>
