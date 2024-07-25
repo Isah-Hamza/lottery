@@ -1,7 +1,7 @@
 import React from "react";
 import {RxCaretDown} from "react-icons/rx";
 
-const Select = ({options, className, label, labelClass, value, onChange, ...rest}) => {
+const Select = ({options, className, label, labelClass, value, onChange, placeholder, ...rest}) => {
   return (
     <div className="flex flex-col gap-1 ">
       <p className={`text-sm ${labelClass}`}>{label}</p>
@@ -12,7 +12,7 @@ const Select = ({options, className, label, labelClass, value, onChange, ...rest
           value={value}
           {...rest}
         >
-          <option value={""}>Select</option>
+          <option className="text-sm" value={""}>{placeholder || 'Select'}</option>
           {options?.map((item, idx) => (
             <option key={idx} value={item.value ?? item.id}>
               {item.label ?? item.text ?? item.name}
