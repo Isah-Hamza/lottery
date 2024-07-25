@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import property from "../../assets/images/property.png";
+import property from "../../assets/images/wallet-icon.png";
 import resident from "../../assets/images/residents.png";
 import staff from "../../assets/images/staff.png";
 import asset from "../../assets/images/asset.png";
@@ -10,21 +10,24 @@ import approve from "../../assets/images/approve.png";
 import fire from "../../assets/images/fire.png";
 import jide from "../../assets/images/jide.png";
 import CustomLineChart from "../../components/Chart/LineChart";
+import download from '../../assets/images/download.svg';
 
 import { RxCaretDown, RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { FiEye } from "react-icons/fi";
 import Select from "../../components/Inputs/Select";
+import { BiFolder } from "react-icons/bi";
+import { BsArrowDown, BsArrowUp } from "react-icons/bs";
 
 const Dashboard = () => {
   const [communities, setCommunities] = useState([]);
 
   const Paid = () => (
-    <div className="w-[90px] text-center bg-primary-light-green/10  text-primary-light-green text-xs p-1.5 rounded-2xl">
+    <div className="w-[65px] text-center bg-primary-light-green/10  text-primary-light-green text-xs p-1.5 rounded-2xl">
       Paid
     </div>
   );
   const Pending = () => (
-    <div className="w-[90px] text-center bg-primary-yellow/30  text-primary-yellow text-xs p-1.5 rounded-2xl">
+    <div className="w-[65px] text-center bg-primary-yellow/30  text-primary-yellow text-xs p-1.5 rounded-2xl">
       Pending
     </div>
   );
@@ -140,11 +143,11 @@ const Dashboard = () => {
   ]
 
   const Active = () => (
-    <div className='w-[100px] bg-primary-green/10  text-primary-light-green text-center text-xs p-1.5 py-1.5 rounded-2xl'>successful</div>
+    <div className='w-[80px] bg-primary-green/10  text-primary-light-green text-center text-xs p-1.5 py-1.5 rounded-2xl'>successful</div>
 )
 
   const Inactive = () => (
-    <div className='w-[100px] bg-red-200 text-red-800 text-center text-xs p-1.5 py-1.5 rounded-2xl'>failed</div>
+    <div className='w-[80px] bg-red-200 text-red-800 text-center text-xs p-1.5 py-1.5 rounded-2xl'>failed</div>
 )
 
 const statusess =  {
@@ -222,7 +225,7 @@ const table_data_b = [
     {
         ref:'148AGI6GH1',
         amount:'₦2,300',
-        title:'Sample Title',
+        title:'Sample Invoice Title',
         issue:'09 Feb 2032',
         due:'09 Feb 2032',
         status:'Paid'
@@ -230,7 +233,7 @@ const table_data_b = [
     {
         ref:'148AGI6GH1',
         amount:'₦2,300',
-        title:'Sample Title',
+        title:'Sample Invoice Title',
         issue:'09 Feb 2032',
         due:'09 Feb 2032',
         status:'Pending'
@@ -238,7 +241,7 @@ const table_data_b = [
     {
         ref:'148AGI6GH1',
         amount:'₦2,300',
-        title:'Sample Title',
+        title:'Sample Invoice Title',
         issue:'09 Feb 2032',
         due:'09 Feb 2032',
         status:'Pending'
@@ -246,7 +249,7 @@ const table_data_b = [
     {
         ref:'148AGI6GH1',
         amount:'₦2,300',
-        title:'Sample Title',
+        title:'Sample Invoice Title',
         issue:'09 Feb 2032',
         due:'09 Feb 2032',
         status:'Paid'
@@ -254,7 +257,7 @@ const table_data_b = [
     {
         ref:'148AGI6GH1',
         amount:'₦2,300',
-        title:'Sample Title',
+        title:'Sample Invoice Title',
         issue:'09 Feb 2032',
         due:'09 Feb 2032',
         status:'Paid'
@@ -265,20 +268,24 @@ const table_data_b = [
 
   return (
     <div>  
+      <div className="mb-7">
+        <p className="text-xl font-semibold text-[#101828]" >Hi <span className="text-primary-light-green font-semibold" >Juma’ah</span> 👋, Wecome to NLRC</p>
+        <p className="text-xs mt-1">Lorem ipsum dolor sit amet consectetur. Ultrices turpis amet et id.</p>
+      </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-sm mb-5">
-        <div className="bg-white p-4 rounded-lg">
+        <div className="bg-[#5F891C] text-white p-4 rounded-lg">
           <div className="flex justify-between items-start">
             <div>
               <p>Payment Count</p>
-              <p className="mt-2 text-xl font-semibold text-faint-black">₦4,500,000</p>
+              <p className="mt-2 text-xl font-semibold ">₦4,500,000</p>
             </div>
             <img src={property} alt="property" />
           </div>
           <div className="flex mt-8">
             <p>
               {" "}
-              <span className="font-medium">35</span> occupied |{" "}
-              <span className="font-medium">9</span> vacant
+            <span> Last Payment </span> 
+              <span className="font-medium">04/12/2022</span>
             </p>
           </div>
         </div>
@@ -291,9 +298,9 @@ const table_data_b = [
             <img src={resident} alt="resident" />
           </div>
           <div className="flex mt-8">
-            <p>
+            <p className="flex items-center gap-2">
               {" "}
-              <span className="font-medium">14</span> residents with dependants
+              <p className="flex items-center font-medium text-primary-green"> <BsArrowUp /> 40%</p> vs last month
             </p>
           </div>
         </div>
@@ -306,9 +313,9 @@ const table_data_b = [
             <img src={staff} alt="staff" />
           </div>
           <div className="flex mt-8">
-            <p>
+            <p className="flex items-center gap-2">
               {" "}
-              <span className="font-medium">18</span> checked in
+              <p className="flex items-center font-medium text-red-800"> <BsArrowDown /> 40%</p> vs last month
             </p>
           </div>
         </div>
@@ -323,7 +330,7 @@ const table_data_b = [
           <div className="flex mt-8">
             <p>
               {" "}
-              <span className="font-medium">32</span> attended to
+              <span className="font-medium">32</span> pending invoices
             </p>
           </div>
         </div>
@@ -393,7 +400,7 @@ const table_data_b = [
                     </div>
                     </div>
                     <div>
-                    <button className="text-xs text-primary font-medium  bg-primary/20 px-2 py-2 rounded-xl" >Make Payment</button>
+                    <button className="text-xs text-primary font-medium  bg-primary/10 px-2 py-2 rounded-xl" >Make Payment</button>
                     </div>
                 </div>
                 ))}
@@ -541,7 +548,7 @@ const table_data_b = [
                         <tr>
                             {
                                 table_header_a.map((item, idx) => (
-                                    <td className='py-2' key={idx}>{item}</td>
+                                    <td className={`py-2 ${idx ==0 && 'pl-3'}`} key={idx}>{item}</td>
                                 ))
                             }
                         </tr>
@@ -550,16 +557,20 @@ const table_data_b = [
                         {
                             table_data_a.map((item, idx) => (
                                 <tr className={`mt-5 pt-5 ${idx !== table_data_a.length - 1 && 'border-b'}`} key={idx}>
-                                    <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.invoice_no}</td>
+                                    <td className={`flex items-center gap-2 py-5 ${idx == 0 && 'pt-7'}`}>
+                                    <img className="w-7" src={download} alt="download icon" />
+                                    {item.invoice_no}
+                                    </td>
                                     <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.amount}</td>
                                     <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.operator}</td>
                                     <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.service}</td>
                                     <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{item.date}</td>
                                     <td className={`py-5 ${idx == 0 && 'pt-7'}`}>{statusess[item.status]}</td>
                                     <td className={`py-5 ${idx == 0 && 'pt-7'}`}>
-                                        <div className=' text-center pl-10'>
-                                            <FiEye size={18} />
-                                        </div>
+                                        <button className='bg-primary-light-green/5 text-primary-light-green font-medium p-2 rounded-3xl text-xs text-center flex items-center gap-1'>
+                                            <BiFolder size={15} />
+                                            <span>Download File</span>
+                                        </button>
                                     </td>
                                 </tr>
                             ))
