@@ -106,23 +106,23 @@ const DashboardLayout = () => {
   const dashboardItems = [
     {
       name: "Dashboard",
-      route: "/dashboard",
+      route: "/admin",
       icon: <RxDashboard />,
-      identifier: "dashboard",
+      identifier: "admin",
       permission: "view_dashboard",
     },
     {
       name: "Transactions",
-      route: "#",
+      route: "/admin-transactions",
       icon: <HiOutlineLightBulb size={17} />,
-      identifier: "",
+      identifier: "admin-transactions",
       permission: "view_dashboard",
     },
     {
-      name: "Invoices",
-      route: "#",
+      name: "Report by Operators",
+      route: "/operators-report",
       icon: <CiRollingSuitcase size={20} />,
-      identifier: "",
+      identifier: "operators-report",
       permission: "view_dashboard",
     },
     // {
@@ -279,6 +279,8 @@ const DashboardLayout = () => {
 
   useEffect(() => {
     const active_item = window.location.pathname.split("/")[1];
+    console.log(active_item);
+
     setActiveLink(active_item);
     filteredDashboardItems.map((item, idx) => {
       if (item.identifier === active_item) {

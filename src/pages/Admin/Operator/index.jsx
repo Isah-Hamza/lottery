@@ -1,26 +1,30 @@
 import React, { useState } from "react";
-import property from "../../assets/images/wallet-icon.png";
-import resident from "../../assets/images/residents.png";
-import staff from "../../assets/images/staff.png";
-import asset from "../../assets/images/asset.png";
-import send from "../../assets/images/send.svg";
-import colony from "../../assets/images/friends_colony.png";
-import transfer from "../../assets/images/transfer.png";
-import approve from "../../assets/images/approve.png";
-import fire from "../../assets/images/fire.png";
-import jide from "../../assets/images/jide.png";
-import CustomLineChart from "../../components/Chart/LineChart";
-import download from '../../assets/images/download.svg';
-import Input from '../../components/Inputs'
+import property from "../../../assets/images/wallet-icon.png";
+import resident from "../../../assets/images/residents.png";
+import staff from "../../../assets/images/staff.png";
+import asset from "../../../assets/images/asset.png";
+import jide from "../../../assets/images/jide.png";
+import CustomLineChart from "../../../components/Chart/LineChart";
+import download from '../../../assets/images/download.svg';
+import Input from '../../../components/Inputs'
 
 import { RxCaretDown, RxCaretLeft, RxCaretRight } from "react-icons/rx";
 import { FiEye } from "react-icons/fi";
-import Select from "../../components/Inputs/Select";
-import { BiFolder, BiSearch } from "react-icons/bi";
+import Select from "../../../components/Inputs/Select";
+import { BiCalendar, BiFolder, BiSearch } from "react-icons/bi";
 import { BsArrowDown, BsArrowUp } from "react-icons/bs";
+import invoice from '../../../assets/images/invoice.svg';
 
-const Dashboard = () => {
+const Operator = () => {
   const [communities, setCommunities] = useState([]);
+
+  const filters = [
+    '12 months',
+    '30 days',
+    '7 days',
+    '24 hours',
+
+  ]
 
   const Paid = () => (
     <div className="w-[65px] text-center bg-primary-light-green/10  text-primary-light-green text-xs p-1.5 rounded-2xl">
@@ -269,9 +273,23 @@ const table_data_b = [
 
   return (
     <div>  
-      <div className="mb-7">
+      <div className="mb-10">
         <p className="text-xl font-semibold text-[#101828]" >Hi <span className="text-primary-light-green font-semibold" >Juma’ah</span> 👋, Wecome to NLRC</p>
         <p className="text-xs mt-1">Lorem ipsum dolor sit amet consectetur. Ultrices turpis amet et id.</p>
+      </div>
+      <div className="text-sm mb-4 mt-5 flex items-center gap-10 w-full justify-between">
+        <div className="flex gap-3">
+          <div className="flex border rounded-lg overflow-hidden bg-white">
+            {
+              filters.map(item => <button className={`px-3 py-2 border-r ${''}`} key={item}>{item}</button>)
+            }
+          </div>
+          <button className={`border rounded-lg overflow-hidden bg-white flex items-center  gap-2 px-3 py-2 border-r ${''}`} >
+            <BiCalendar  />
+            <span>Select dates</span>
+          </button>
+        </div>
+        <Select className={'!txt-sm rounded-3xl min-w-[170px] !py-2'} placeholder={'Select Operator'}  />
       </div>
       <div className="grid grid-cols-2 sm:grid-cols-4 gap-5 text-sm mb-5">
         <div className="bg-[#5F891C] text-white p-4 rounded-lg">
@@ -378,30 +396,30 @@ const table_data_b = [
         <div className="p-5 bg-white rounded-xl text-sm">
           <div className="flex gap-5 justify-between items-start">
             <div className="">
-              <p className="font-medium ">Pending Invoices</p>
+              <p className="font-medium ">Transaction by Operators</p>
               <p className="text-[#828282]">
-                <span className="font-medium">5</span> pending invoices
+                <span className="font-medium">5</span> operators
               </p>
             </div>
             <button className="text-xs">see all</button>
           </div>
-          <div className="mt-10">
+          <div className="mt-8">
                 {invoices.map((item, idx) => (
                 <div
                     key={idx}
                     className="bg-[#fdfdfd] mt-3 text-sm flex justify-between items-center p-3 rounded-lg border"
                 >
                     <div className="text-xs">
-                    <p className="mb-1 text-sm font-medium">{item.title}</p>
+                    <p className="mb-1 text-sm font-medium">Operator name</p>
                     <div className="flex items-center gap-2" >
                         <p className="font-medium text-faint-black"> 
-                        {item.amount}
+                        27 Operators
                         </p><span> | </span>
-                        <p>{item.date}</p>
+                        <p>16% ratio</p>
                     </div>
                     </div>
                     <div>
-                    <button className="text-xs text-primary font-medium  bg-primary/10 px-2 py-2 rounded-xl" >Make Payment</button>
+                        <p className="font-medium"> ₦2,370,000 </p>
                     </div>
                 </div>
                 ))}
@@ -410,121 +428,7 @@ const table_data_b = [
       </div>
     
       {/* end */}
-      {/* <div className="mt-5 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
-        <div className="p-5 bg-white rounded-xl text-sm">
-          <div className="flex gap-5 justify-between items-start">
-            <div className="">
-              <p className="font-medium ">Recent Emergency</p>
-              <p className="text-[#828282]">
-                <span className="font-medium">4</span> occurences this month
-              </p>
-            </div>
-            <button className="text-xs">see all</button>
-          </div>
-          {emergencies.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-[#fdfdfd] mt-3 text-sm flex justify-between items-center p-3 rounded-lg border"
-            >
-              <div className="flex items-center gap-3">
-                <img src={fire} alt="fire" />
-                <div>
-                  <p className="font-medium text-faint-black mb-1">
-                    {item.name}
-                  </p>
-                  <p>{item.address}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="mb-1">{statuses[item.status]}</div>
-                <p className="text-primary-yellow">{item.cateogry}</p>
-              </div>
-            </div>
-          ))}
-          <div className="mt-5">
-            <button className="text-sm bg-[#1639300A] text-[#163930] font-medium w-full p-2.5 rounded-2xl ">
-              Manage emergencies
-            </button>
-          </div>
-        </div>
-        <div className="p-5 bg-white rounded-xl text-sm">
-          <div className="flex gap-5 justify-between items-start">
-            <div className="">
-              <p className="font-medium ">Todays Checkin History</p>
-              <p className="text-[#828282]">
-                <span className="font-medium">12</span> visitors checked in
-                today
-              </p>
-            </div>
-            <button className="text-xs">see all</button>
-          </div>
-          {checkin.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-[#fdfdfd] mt-3 text-sm flex justify-between items-center p-3 rounded-lg border"
-            >
-              <div className="flex items-center gap-3">
-                <img src={item.img} alt="fire" />
-                <div>
-                  <p className="font-medium text-faint-black mb-1">
-                    {item.name}
-                  </p>
-                  <p>{item.address}</p>
-                </div>
-              </div>
-              <div>
-                <div className="mb-1 p-1 text-center rounded-xl text-primary-green bg-primary-green/10 text-xs">
-                  {item.status}
-                </div>
-                <p className="text-right">{item.time}</p>
-              </div>
-            </div>
-          ))}
-          <div className="mt-5">
-            <button className="text-sm bg-[#1639300A] text-[#163930] font-medium w-full p-2.5 rounded-2xl ">
-              Manage checkins
-            </button>
-          </div>
-        </div>
-        <div className="p-5 bg-white rounded-xl text-sm">
-          <div className="flex gap-5 justify-between items-start">
-            <div className="">
-              <p className="font-medium ">Pending service requests</p>
-              <p className="text-[#828282]">
-                <span className="font-medium">21</span> requests this month
-              </p>
-            </div>
-            <button className="text-xs">see all</button>
-          </div>
-
-          {services.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-[#fdfdfd] mt-3 text-sm flex justify-between items-center p-3 py-2 rounded-lg border"
-            >
-              <div className="flex items-center gap-3">
-                <div>
-                  <p className="font-medium text-faint-black mb-1">
-                    {item.name}
-                  </p>
-                  <p>{item.address}</p>
-                </div>
-              </div>
-              <div>
-                <div className="ml-auto mb-1 p-1 text-center w-fit">
-                  {statuses[item.status]}
-                </div>
-                <p className="text-right">{item.resident}</p>
-              </div>
-            </div>
-          ))}
-          <div className="mt-5">
-            <button className="text-sm bg-[#1639300A] text-[#163930] font-medium w-full p-2.5 rounded-2xl ">
-              Manage services
-            </button>
-          </div>
-        </div>
-      </div> */}
+     
       {/* Table */}
       <div className="bg-white rounded-xl p-5 mt-5">
             <div className="text-sm flex  flex-col gap-4 justify-between ">
@@ -532,7 +436,7 @@ const table_data_b = [
                 <p className="font-medium text-base">General reports</p>
                     <div className="flex p-1 items-center rounded-[28px] bg-[#f1f1f1]">
                         {
-                            ['All Transactions','All Invoices'].map((item,idx) => (
+                            ['All Transactions','Invoices'].map((item,idx) => (
                             <button onClick={() => setActiveTab(idx)} 
                                 className={` px-5 py-2 rounded-3xl  ${activeTab == idx && 'text-white bg-primary-light-green'}`}>
                                 {item}
@@ -544,10 +448,10 @@ const table_data_b = [
                 <div className="mt-5 flex gap-3">
                   <div className="relative">
                     <Input placeholder={'search transactions operator etc'} className={'rounded-[30px] pl-10'} />
-                    <BiSearch size={18} className="absolute left-3 top-[55%] -translate-y-1/2" />
+                    <BiSearch color="gray" size={18} className="absolute left-3 top-[53%] -translate-y-1/2" />
                   </div>
                   {/* <Select className={'rounded-3xl min-w-[100px]'} options={[{label:"Select Teyp",value:0}]} /> */}
-                  <Input type={'date'} className={'rounded-3xl min-w-[100px]'} options={[{label:"Select Teyp",value:0}]} />
+                  <Input type={'date'} className={'rounded-3xl min-w-[100px]'} options={[{label:"Select Type",value:0}]} />
                 </div>
             </div>
             <div className="max-w-[calc(100vw-67px)] sm:max-w-[unset] overflow-x-auto !text-sm w-full mt-7">
@@ -644,4 +548,4 @@ const table_data_b = [
   );
 };
 
-export default Dashboard;
+export default Operator;
