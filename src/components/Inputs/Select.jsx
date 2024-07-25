@@ -7,7 +7,7 @@ const Select = ({options, className, label, labelClass, value, onChange, ...rest
       <p className={`text-sm ${labelClass}`}>{label}</p>
       <div className="relative">
         <select
-          className={`focus-within:border-primary-green outline-none w-full border rounded p-3 pr-4 appearance-none text-sm ${className}`}
+          className={`focus-within:border-primary-light-green outline-none w-full border rounded p-3 pr-4 appearance-none text-sm ${className}`}
           onChange={onChange}
           value={value}
           {...rest}

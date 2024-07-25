@@ -77,7 +77,7 @@ const data = [
 
 ];
 
-const CustomLineChart = () => {
+const CustomLineChart = ({ height }) => {
 
     // render() {
     const [width, setWidth] = useState(300);
@@ -90,7 +90,7 @@ const CustomLineChart = () => {
 
     return (
         // <ResponsiveContainer width={630} height={250}>
-        <ResponsiveContainer width={width} minHeight={250} >
+        <ResponsiveContainer width={width} minHeight={height ?? 250} >
             <LineChart
                 width={'100%'}
                 height={'100%'}
@@ -108,7 +108,7 @@ const CustomLineChart = () => {
                 <YAxis axisLine={{ display: 'none' }} tick={{ fontSize: 12, fontWeight: 700 }} />
                 <Tooltip />
                 {/* <Legend /> */}
-                <Line strokeWidth={2} dot={false} type="monotone" dataKey="pv" stroke="#163930" />
+                <Line strokeWidth={2} dot={false} type="monotone" dataKey="pv" stroke="#5F891C" />
                 <Line strokeWidth={2} dot={false} type="monotone" dataKey="uv" stroke="#E5951A" />
             </LineChart>
         </ResponsiveContainer>

@@ -6,6 +6,8 @@ import './App.css'
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Dashboard from './pages/Dashboard';
 import DashboardLayout from './layouts/DashboardLayout';
+import AdminLayout from './layouts/AdminLayout';
+import Admin from './pages/Admin'
 
 function App() {
   const [count, setCount] = useState(0)
@@ -17,6 +19,9 @@ function App() {
       <Route path='/' Component={Landing} />
       <Route path='/' Component={DashboardLayout} >
         <Route path='dashboard' Component={Dashboard} />
+      </Route>
+      <Route path='/' Component={AdminLayout} >
+        <Route path='admin' Component={Admin} />
       </Route>
     </Routes>
   </BrowserRouter>

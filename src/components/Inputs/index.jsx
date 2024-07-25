@@ -9,7 +9,7 @@ const Input = ({ disabled, label, id, type, placeholder, className, labelClass, 
             <input
                 type={type}
                 placeholder={placeholder}
-                className={`disabled:text-primary-gray focus-within:border-primary-green rounded text-sm p-3 py-3 border outline-none ${className}`}
+                className={`disabled:text-primary-gray focus-within:border-primary-light-green rounded text-sm p-3 py-3 border outline-none ${className}`}
                 value={value}
                 onChange={onChange}
                 disabled={disabled}

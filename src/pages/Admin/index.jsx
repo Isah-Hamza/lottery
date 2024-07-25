@@ -20,7 +20,6 @@ import { BiFolder, BiSearch } from "react-icons/bi";
 import { BsArrowDown, BsArrowUp } from "react-icons/bs";
 
 const Dashboard = () => {
-  const [communities, setCommunities] = useState([]);
 
   const Paid = () => (
     <div className="w-[65px] text-center bg-primary-light-green/10  text-primary-light-green text-xs p-1.5 rounded-2xl">
@@ -336,7 +335,7 @@ const table_data_b = [
           </div>
         </div>
       </div>
-      <div className="grid gap-5 md:grid-cols-[2.6fr,1.4fr] min-h-20">
+      <div className="grid gap-5 min-h-20">
         <div className="bg-white rounded-xl p-4 sm:p-7">
           <div className="flex items-center gap-10 justify-between mb-12">
             <p className="text-base font-medium text-faint-black">
@@ -354,8 +353,8 @@ const table_data_b = [
               </span>
             </div>
           </div>
-          <div className="chart-parent my-5 h-52 grid place-content-center -ml-12 mb-12">
-            <CustomLineChart />
+          <div className="chart-parent my-5 h-60 grid place-content-center -ml-12 mb-12">
+            <CustomLineChart height={300} />
           </div>
           <div className="grid grid-cols-2 sm:flex text-sm gap-y-10 sm:gap-y-0">
             
@@ -375,7 +374,7 @@ const table_data_b = [
             </div>
           </div>
         </div>
-        <div className="p-5 bg-white rounded-xl text-sm">
+        {/* <div className="p-5 bg-white rounded-xl text-sm">
           <div className="flex gap-5 justify-between items-start">
             <div className="">
               <p className="font-medium ">Pending Invoices</p>
@@ -406,77 +405,37 @@ const table_data_b = [
                 </div>
                 ))}
           </div>
-        </div>
+        </div> */}
       </div>
     
       {/* end */}
-      {/* <div className="mt-5 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
+      <div className="mt-5 grid sm:grid-cols-2 md:grid-cols-3 gap-5">
         <div className="p-5 bg-white rounded-xl text-sm">
           <div className="flex gap-5 justify-between items-start">
             <div className="">
-              <p className="font-medium ">Recent Emergency</p>
+              <p className="font-medium ">Top Debtors</p>
               <p className="text-[#828282]">
-                <span className="font-medium">4</span> occurences this month
-              </p>
+                <span className="font-medium">7</span> payments due
+                </p>
             </div>
-            <button className="text-xs">see all</button>
-          </div>
-          {emergencies.map((item, idx) => (
-            <div
-              key={idx}
-              className="bg-[#fdfdfd] mt-3 text-sm flex justify-between items-center p-3 rounded-lg border"
-            >
-              <div className="flex items-center gap-3">
-                <img src={fire} alt="fire" />
-                <div>
-                  <p className="font-medium text-faint-black mb-1">
-                    {item.name}
-                  </p>
-                  <p>{item.address}</p>
-                </div>
-              </div>
-              <div className="text-right">
-                <div className="mb-1">{statuses[item.status]}</div>
-                <p className="text-primary-yellow">{item.cateogry}</p>
-              </div>
-            </div>
-          ))}
-          <div className="mt-5">
-            <button className="text-sm bg-[#1639300A] text-[#163930] font-medium w-full p-2.5 rounded-2xl ">
-              Manage emergencies
-            </button>
-          </div>
-        </div>
-        <div className="p-5 bg-white rounded-xl text-sm">
-          <div className="flex gap-5 justify-between items-start">
-            <div className="">
-              <p className="font-medium ">Todays Checkin History</p>
-              <p className="text-[#828282]">
-                <span className="font-medium">12</span> visitors checked in
-                today
-              </p>
-            </div>
-            <button className="text-xs">see all</button>
+            <button className="text-xs text-primary-light-green font-medium">see all</button>
           </div>
           {checkin.map((item, idx) => (
             <div
               key={idx}
-              className="bg-[#fdfdfd] mt-3 text-sm flex justify-between items-center p-3 rounded-lg border"
+              className="bg-[#fdfdfd] mt-3 text-[13px] flex justify-between items-center p-3 px-2 rounded-lg border"
             >
               <div className="flex items-center gap-3">
                 <img src={item.img} alt="fire" />
                 <div>
                   <p className="font-medium text-faint-black mb-1">
-                    {item.name}
+                    {'Debtor Name'}
                   </p>
-                  <p>{item.address}</p>
+                  <p>Due on 02/09/2023</p>
                 </div>
               </div>
               <div>
-                <div className="mb-1 p-1 text-center rounded-xl text-primary-green bg-primary-green/10 text-xs">
-                  {item.status}
-                </div>
-                <p className="text-right">{item.time}</p>
+                <p className="text-right font-medium">{'₦70,000'}</p>
               </div>
             </div>
           ))}
@@ -489,48 +448,81 @@ const table_data_b = [
         <div className="p-5 bg-white rounded-xl text-sm">
           <div className="flex gap-5 justify-between items-start">
             <div className="">
-              <p className="font-medium ">Pending service requests</p>
+              <p className="font-medium ">Top Performing Operators</p>
               <p className="text-[#828282]">
-                <span className="font-medium">21</span> requests this month
-              </p>
+                <span className="font-medium">5</span> Operators
+                </p>
             </div>
-            <button className="text-xs">see all</button>
+            <button className="text-xs text-primary-light-green font-medium">see all</button>
           </div>
-
-          {services.map((item, idx) => (
+          {checkin.map((item, idx) => (
             <div
               key={idx}
-              className="bg-[#fdfdfd] mt-3 text-sm flex justify-between items-center p-3 py-2 rounded-lg border"
+              className="bg-[#fdfdfd] mt-3 text-[13px] flex justify-between items-center p-3 px-2 rounded-lg border"
             >
               <div className="flex items-center gap-3">
+                <img src={item.img} alt="fire" />
                 <div>
                   <p className="font-medium text-faint-black mb-1">
                     {item.name}
                   </p>
-                  <p>{item.address}</p>
+                  <p>2% performance ratio</p>
                 </div>
               </div>
               <div>
-                <div className="ml-auto mb-1 p-1 text-center w-fit">
-                  {statuses[item.status]}
-                </div>
-                <p className="text-right">{item.resident}</p>
+                <p className="text-right font-medium">{'₦70,000'}</p>
               </div>
             </div>
           ))}
           <div className="mt-5">
             <button className="text-sm bg-[#1639300A] text-[#163930] font-medium w-full p-2.5 rounded-2xl ">
-              Manage services
+              Manage checkins
             </button>
           </div>
         </div>
-      </div> */}
+        <div className="p-5 bg-white rounded-xl text-sm">
+          <div className="flex gap-5 justify-between items-start">
+            <div className="">
+              <p className="font-medium ">Least Performing Operators</p>
+              <p className="text-[#828282]">
+                <span className="font-medium">5</span> Operators
+                </p>
+            </div>
+            <button className="text-xs text-primary-light-green font-medium">see all</button>
+          </div>
+          {checkin.map((item, idx) => (
+            <div
+              key={idx}
+              className="bg-[#fdfdfd] mt-3 text-[13px] flex justify-between items-center p-3 px-2 rounded-lg border"
+            >
+              <div className="flex items-center gap-3">
+                <img src={item.img} alt="fire" />
+                <div>
+                  <p className="font-medium text-faint-black mb-1">
+                    {item.name}
+                  </p>
+                  <p>2% performance ratio</p>
+                </div>
+              </div>
+              <div>
+                <p className="text-right font-medium">{'₦70,000'}</p>
+              </div>
+            </div>
+          ))}
+          <div className="mt-5">
+            <button className="text-sm bg-[#1639300A] text-[#163930] font-medium w-full p-2.5 rounded-2xl ">
+              Manage checkins
+            </button>
+          </div>
+        </div>
+       
+      </div>
       {/* Table */}
       <div className="bg-white rounded-xl p-5 mt-5">
             <div className="text-sm flex  flex-col gap-4 justify-between ">
                 <div className="w-full flex items-center gap-10 justify-between">
-                <p className="font-medium text-base">General reports</p>
-                    <div className="flex p-1 items-center rounded-[28px] bg-[#f1f1f1]">
+                <p className="font-medium text-base">Recent Transactions</p>
+                    {/* <div className="flex p-1 items-center rounded-[28px] bg-[#f1f1f1]">
                         {
                             ['All Transactions','All Invoices'].map((item,idx) => (
                             <button onClick={() => setActiveTab(idx)} 
@@ -539,9 +531,9 @@ const table_data_b = [
                             </button>
                             ))
                         }
-                    </div>
+                    </div> */}
                 </div>
-                <div className="flex gap-3">
+                <div className="mt-3 flex gap-3">
                   <div className="relative">
                     <Input placeholder={'search transactions operator etc'} className={'rounded-[30px] pl-10'} />
                     <BiSearch size={18} className="absolute left-3 top-[55%] -translate-y-1/2" />
