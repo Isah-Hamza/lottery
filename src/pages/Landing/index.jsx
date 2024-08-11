@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import logo from '../../assets/images/nlc-logo.png';
 import design from '../../assets/images/design2.png';
 import Input from '../../components/Inputs';
@@ -10,6 +10,9 @@ const index = () => {
     const [success,setSuccess] = useState(false);
     const next = () => setStep(prev => prev + 1);
     const prev = () => setStep(prev => prev - 1);
+    const [isNew,setIsNew] = useState(false);
+
+    const [selectedOperator, setSelectedOperator] = useState('');
 
     function makePayment() {
         var handler = RmPaymentEngine.init({
@@ -60,6 +63,10 @@ const index = () => {
         { label:'REFUND', value:null},
     ]
 
+    const newServiceOptions = [
+        { label:'APPROVAL IN PRINCIPLE FEE', value:null}, 
+    ]
+
     const operatorOptions = [
         { label:'BETKING', value:null},
         { label:'1XBET', value:null},
@@ -67,12 +74,14 @@ const index = () => {
         { label:'BETFUSE', value:null},
         { label:'FAST BET', value:null},
         { label:'SURE ODDS', value:null},
+        { label:'OTHERS', value:'others'},
     ]
 
     const goBack = () => {
         if(step == 1) return;
         prev();
     }
+    
     
   return (
     <>
@@ -84,18 +93,37 @@ const index = () => {
             </div>
         </div>
         <div className="flex-1 h-screen overflow-auto p-5 sm:p-10 py-7 pb-10">
-            <div className="flex justify-end items-center gap-2 text-sm">
-                {/* <span className='text-faint_black'>Already have an account ?</span> */}
-                <button onClick={goBack} className='font-medium bg-white text-black px-5 py-3 shadow rounded-sm' >GO BACK</button>
-            </div>
-        {step == 1 ?  <div className="mt-20 mx-auto w-full lg:w-[720px] bg-white shadow min-h-[200px] rounded-md p-6 pt-7  pb-8">
+            { 
+                step == 1 ? <div className="flex items-center text-sm ml-[1px] mt-5">
+                    {/* <span className='text-faint_black'>Already have an account ?</span> */}
+                    <button onClick={() => setIsNew(false)} className={`rounded-t-md text-black px-5 py-3 rounded-sm ${!isNew && 'bg-white border border-b-0 font-medium'}`} >Returning Operator</button>
+                    <button onClick={() => setIsNew(true)} className={`rounded-t-md text-black px-5 py-3 rounded-sm ${isNew && 'bg-white border border-b-0 font-medium'}`} >New Operator</button>
+                </div> :
+                <div className="flex justify-end items-center gap-2 text-sm">
+                    {/* <span className='text-faint_black'>Already have an account ?</span> */}
+                    <button onClick={goBack} className='font-medium bg-white text-black px-5 py-3 shadow rounded-sm' >GO BACK</button>
+                </div>
+            }
+        {step == 1 ?  <div className={`mx-auto w-full lg:w-[720px] bg-white shadow-sm min-h-[200px] rounded-md p-6  pt-7  pb-8 ${!isNew && 'rounded-tl-[0px]'}`}>
                 <div className="text-center text-sm">
-                    <p className='text-lg font-semibold text-primary'>Pay a Biller</p>
+                    <p className='text-lg font-semibold text-primary'>Pay For a Service</p>
                     <p className='text-faint_black' >NATIONAL LOTTERY REGULATORY COMMISSION (NLRC) - 011105100100.</p>
                 </div>
                 <div className="mt-14 grid sm:grid-cols-2 gap-6">
-                    <div className="col-span-2"><Select options={operatorOptions} label={'Select Operator'} /></div>
-                    <div className="col-span-2"><Select options={serviceOptions} label={'Select Service'} /></div>
+                    {
+                      !isNew ?  <div className="col-span-2"><Select onChange={e => setSelectedOperator(e.target.value) } options={operatorOptions} label={'Select Operator'} /></div>  : null
+                    }
+                    {
+                        selectedOperator == 'others' || isNew ? 
+                        <>
+                            <div className="col-span-2"><Input label={'Operator Name'} placeholder={'e.g NLRC BET'}/></div>
+                            <div className="col-span"><Input label={'Email'} placeholder={'e.g nlrc.bet@hotmail.com'}/></div>
+                            <div className="col-span"><Input label={'Phone Number'} placeholder={'e.g 09030499205'}/></div>
+                        </>
+                        : 
+                        null
+                    }
+                    <div className="col-span-2"><Select options={isNew ? newServiceOptions : serviceOptions} label={'Select Service'} /></div>
                     {/* <div className=""><Select label={'Billing Currency'} /></div> */}
                     <div className="col-span-2"><Input label={'Amount'} placeholder={'₦ 120,000'}/></div>
                     {/* <div className=""><Select label={'Country of Operation'} /></div> */}
@@ -153,7 +181,6 @@ const index = () => {
                 </div>
             </div>    :
             <div>
-
             </div>
         }
         </div>
