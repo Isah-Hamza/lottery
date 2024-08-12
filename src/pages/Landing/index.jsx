@@ -94,10 +94,10 @@ const index = () => {
         </div>
         <div className="flex-1 h-screen overflow-auto p-5 sm:p-10 py-7 pb-10">
             { 
-                step == 1 ? <div className="flex items-center text-sm ml-[1px] mt-5">
+                step == 1 ? <div className="m-auto w-full lg:w-[720px] flex items-center text-sm mt-5">
                     {/* <span className='text-faint_black'>Already have an account ?</span> */}
-                    <button onClick={() => setIsNew(false)} className={`rounded-t-md text-black px-5 py-3 rounded-sm ${!isNew && 'bg-white border border-b-0 font-medium'}`} >Returning Operator</button>
-                    <button onClick={() => setIsNew(true)} className={`rounded-t-md text-black px-5 py-3 rounded-sm ${isNew && 'bg-white border border-b-0 font-medium'}`} >New Operator</button>
+                    <button onClick={() => setIsNew(false)} className={`rounded-t-md text-black px-5 py-3 rounded-sm  rounded-b-0  ${!isNew && 'bg-white border border-b-0 font-medium'}`} >Returning Operator</button>
+                    <button onClick={() => setIsNew(true)} className={`rounded-t-md text-black px-5 py-3 rounded-sm  rounded-b-0 ${isNew && 'bg-white border border-b-0 font-medium'}`} >New Operator</button>
                 </div> :
                 <div className="flex justify-end items-center gap-2 text-sm">
                     {/* <span className='text-faint_black'>Already have an account ?</span> */}
